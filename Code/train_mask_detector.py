@@ -24,9 +24,11 @@ import numpy as np
 import argparse
 import os
 
+os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dataset", required=True,
+ap.add_argument("-d", "--dataset", default="../Dataset-example",
 	help="path to input dataset")
 ap.add_argument("-p", "--plot", type=str, default="plot.png",
 	help="path to output loss/accuracy plot")
@@ -76,7 +78,7 @@ labels = to_categorical(labels)
 (trainX, testX, trainY, testY) = train_test_split(data, labels,
 	test_size=0.20, stratify=labels, random_state=42)
 
-# construct the training image generator for data augmentation
+# construct the training image generator for d891 611 734ata augmentation
 aug = ImageDataGenerator(
 	rotation_range=20,
 	zoom_range=0.15,
